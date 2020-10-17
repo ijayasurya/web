@@ -11,8 +11,22 @@ module.exports = {
     "gatsby-plugin-feed",
     "@reflexjs/gatsby-theme-base",
     "@reflexjs/gatsby-theme-post",
-{
-      resolve: `gatsby-plugin-feed`,
+    {
+      resolve: "@reflexjs/gatsby-plugin-metatags",
+      options: {
+        types: [`Page`, `Post`],
+      },
+    },
+  ],
+}
+
+
+
+// In your gatsby-config.js
+module.exports = {
+  plugins: [
+    {
+      resolve: `gatsby-plugin-feed-mdx`,
       options: {
         query: `
           {
@@ -28,20 +42,20 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.edges.map(edge => {
+            serialize: ({ query: { site, allMdx } }) => {
+              return allMdx.edges.map(edge => {
                 return Object.assign({}, edge.node.frontmatter, {
                   description: edge.node.excerpt,
                   date: edge.node.frontmatter.date,
-                  url: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                  guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
-                  custom_elements: [{ "content:encoded": edge.node.html }],
-                })
-              })
+                  url: site.siteMetadata.siteUrl + "/blog" + edge.node.fields.slug,
+                  guid: site.siteMetadata.siteUrl + "/blog" + edge.node.fields.slug,
+                  custom_elements: [{ "content:encoded": edge.node.html }]
+                });
+              });
             },
             query: `
               {
-                allMarkdownRemark(
+                allMdx(
                   sort: { order: DESC, fields: [frontmatter___date] },
                 ) {
                   edges {
@@ -64,18 +78,10 @@ module.exports = {
             // if `string` is used, it will be used to create RegExp and then test if pathname of
             // current page satisfied this regular expression;
             // if not provided or `undefined`, all pages will have feed reference inserted
-            match: "^/blog/",
-            // optional configuration to specify external rss feed, such as feedburner
-            link: "https://feeds.feedburner.com/gatsby/blog",
-          },
-        ],
-      },
-    },
-    {
-      resolve: "@reflexjs/gatsby-plugin-metatags",
-      options: {
-        types: [`Page`, `Post`],
-      },
-    },
-  ],
-}
+            match: "^/blog/"
+          }
+        ]
+      }
+    }
+  ]
+};
