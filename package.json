@@ -17,6 +17,7 @@
     "@reflexjs/gatsby-theme-post": "^0.6.7",
     "gatsby": "^2.22.11",
     "gatsby-plugin-advanced-sitemap": "^1.5.6",
+    "gatsby-plugin-feed": "^2.5.15",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "typeface-inter": "^3.12.0"

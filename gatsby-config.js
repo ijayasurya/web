@@ -8,6 +8,7 @@ module.exports = {
   },
   plugins: [
     "gatsby-plugin-advanced-sitemap",
+    "gatsby-plugin-feed",
     "@reflexjs/gatsby-theme-base",
     "@reflexjs/gatsby-theme-post",
     {
