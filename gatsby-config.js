@@ -1,3 +1,10 @@
+siteMetadata {
+  title: 'Gatsby',
+  description: 'A static site generator',
+  siteUrl: 'https://gatsbyjs.org',
+  author: 'Author Name'
+},
+  
 require(`dotenv`).config()
 
 module.exports = {
