@@ -4,6 +4,9 @@ export default {
   preset: base,
 
   colors: {
-    primary: `#f74e00`,
+    text: "#000",
+    background: "#fff",
+    primary: "#2a9d8f",
+    secondary: "#e76f51",
   },
 }
