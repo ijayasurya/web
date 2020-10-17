@@ -3,6 +3,7 @@ import { Article, H2, P, Div, Grid } from "@reflexjs/components"
 import { Link } from "@reflexjs/gatsby-theme-core"
 import { Image } from "@reflexjs/gatsby-plugin-image"
 import { PostMeta } from "@reflexjs/gatsby-theme-post"
+import { useProfile } from "@reflexjs/gatsby-theme-profile" 
 
 export const Posts = ({ posts }) => {
   return posts.length ? (
