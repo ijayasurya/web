@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     title: "Reflex",
     description: "Starter for Reflex.",
-    siteUrl: process.env.SITE_URL || "http://localhost:8000",
+    siteUrl: process.env.SITE_URL || "https://ijayasurya.netlify.app/",
   },
   plugins: [
     "gatsby-plugin-advanced-sitemap",
