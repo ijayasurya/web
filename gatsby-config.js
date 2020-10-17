@@ -1,3 +1,9 @@
+siteMetadata: {
+    siteUrl: "https://ijayasurya.netlify.app",
+},
+plugins: [
+    "gatsby-plugin-advanced-sitemap"
+]
 require(`dotenv`).config()
 
 module.exports = {
