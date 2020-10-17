@@ -1,9 +1,3 @@
-siteMetadata: {
-    siteUrl: "https://ijayasurya.netlify.app",
-},
-plugins: [
-    "gatsby-plugin-advanced-sitemap"
-]
 require(`dotenv`).config()
 
 module.exports = {
@@ -13,6 +7,7 @@ module.exports = {
     siteUrl: process.env.SITE_URL || "http://localhost:8000",
   },
   plugins: [
+    "gatsby-plugin-advanced-sitemap",
     "@reflexjs/gatsby-theme-base",
     "@reflexjs/gatsby-theme-post",
     {
