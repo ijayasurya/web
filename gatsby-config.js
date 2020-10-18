@@ -1,16 +1,86 @@
-require(`dotenv`).config()
+const path = require('path');
 
 module.exports = {
   siteMetadata: {
-    title: "Reflex",
-    description: "Starter for Reflex.",
-    author: "Jayasurya Mayilsamy",
-    siteUrl: process.env.SITE_URL || "https://ijayasurya.netlify.app/",
+    title: `The Mindless`,
+    description: `A techxploration - Personal blog by Agney`,
+    author: `Agney Menon`,
+    authorTagline: 'Engineer. Driven by Passion',
+    siteUrl: `https://blog.agney.dev`,
+    social: {
+      twitter: `agneymenon`,
+    },
   },
   plugins: [
-    "gatsby-plugin-advanced-sitemap",
-    "@reflexjs/gatsby-theme-base",
-    "@reflexjs/gatsby-theme-post",
+    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `posts`,
+        path: `${__dirname}/src/content`,
+      },
+    },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        defaultLayouts: {
+          default: path.resolve('./src/templates/blog-post.js'),
+        },
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 800,
+              showCaptions: false,
+            },
+          },
+          {
+            resolve: `gatsby-remark-external-links`,
+          },
+          {
+            resolve: `gatsby-remark-autolink-headers`,
+          },
+          {
+            resolve: `gatsby-remark-copy-linked-files`,
+          },
+          {
+            resolve: `gatsby-remark-smartypants`,
+          },
+        ],
+      },
+      rehypePlugins: [require('@mapbox/rehype-prism')],
+    },
+    `gatsby-plugin-catch-links`,
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: `UA-86549623-3`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Mindless`,
+        short_name: `Mindless`,
+        start_url: `/`,
+        background_color: `#CA3C25`,
+        theme_color: `#CA3C25`,
+        display: `minimal-ui`,
+        gcm_sender_id: '482941778795',
+        icon: `src/images/icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    `gatsby-plugin-offline`,
     {
       resolve: `gatsby-plugin-feed`,
       options: {
@@ -60,16 +130,25 @@ module.exports = {
             `,
             output: '/rss.xml',
             title: `Mindless - Agney's Technical Blog RSS Feed`,
-            site_url: `https://ijayasurya.netlify.app/`,
+            site_url: `https://blog.agney.dev`,
           },
         ],
       },
     },
+    'gatsby-plugin-use-dark-mode',
     {
-      resolve: "@reflexjs/gatsby-plugin-metatags",
+      resolve: `gatsby-plugin-webmention`,
       options: {
-        types: [`Page`, `Post`],
+        username: 'https://blog.agney.dev/',
+        identity: {
+          github: 'agneym',
+          twitter: 'agneymenon',
+        },
+        mentions: true,
+        pingbacks: true,
+        domain: 'blog.agney.dev',
+        token: 'veBNQ5a4xyCTfs4EYDQJUQ',
       },
     },
   ],
-}
+};
