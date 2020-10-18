@@ -10,7 +10,6 @@ module.exports = {
   plugins: [
     "gatsby-plugin-advanced-sitemap",
     "@reflexjs/gatsby-theme-base",
-    "gatsby-plugin-feed",
     "@reflexjs/gatsby-theme-post",
     {
       resolve: `gatsby-plugin-feed`,
